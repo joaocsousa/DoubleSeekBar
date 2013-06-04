@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="DoubleSeekbar">
+		<attr name="min_value" format="integer|reference" />
+		<attr name="max_value" format="integer|reference" />
+		<attr name="min_title" format="string|reference" />
+		<attr name="max_title" format="string|reference" />
+		<attr name="units" format="string|reference" />
+		<attr name="hasMaxSeekBar" format="boolean" />
+	</declare-styleable>
+</resources>

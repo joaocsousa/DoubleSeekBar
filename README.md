@@ -61,6 +61,5 @@ If you do not want two SeekBars you can also have only one, with also a minimum 
 * For now it only supports Integers. Floats, Lists of values, etc. are on the TODO list.
 * The following conditions apply:
     1. The minimum value must be smaller than the maximum value.
-    2. Both minimum and maximum values must be higher than zero.
     3. The minimum value is never higher than the maximum value.
     4. Both values are never equal.

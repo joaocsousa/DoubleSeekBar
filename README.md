@@ -3,7 +3,7 @@ DoubleSeekBar
 
 ##Description
 
-This library provides an easy way to add two native SeekBars with minimum and maximum values, to your Android application.
+This library provides an easy way to add two native SeekBars with minimum and maximum values to your Android application.
 
 <b>Ice Cream Sandwich</b>
 
@@ -13,7 +13,7 @@ This library provides an easy way to add two native SeekBars with minimum and ma
 
 ![Double SeekBar Gingerbread](http://www.tinycoolthings.com/double_seekbar_gingerbread.png)
 
-If you do not want two SeekBars you can also have only one, with also a minimum and a maximum value.
+If you do not want two SeekBars you can also have only one with a minimum and a maximum value.
 
 ![Double SeekBar Single ICS](http://tinycoolthings.com/double_seekbar_single_ics.png)
 
@@ -60,6 +60,5 @@ If you do not want two SeekBars you can also have only one, with also a minimum 
 
 * For now it only supports Integers. Floats, Lists of values, etc. are on the TODO list.
 * The following conditions apply:
-    1. The minimum value must be defined as smaller than the maximum value, and vice-versa.
-    3. The minimum value is never higher than the maximum value, and vice-versa.
-    4. Both values are never equal.
+    1. The minimum value must be defined as smaller than the maximum value.
+    3. The minimum value is never higher than the maximum value.

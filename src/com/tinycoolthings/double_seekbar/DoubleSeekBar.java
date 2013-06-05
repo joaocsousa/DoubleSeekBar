@@ -1,7 +1,5 @@
 package com.tinycoolthings.double_seekbar;
 
-import com.tinycoolthings.double_seekbar.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -20,6 +18,7 @@ public class DoubleSeekBar extends LinearLayout {
 	private String mMinTitle = "";
 	private String mMaxTitle = "";
 	private String mUnits = "";
+	private Float mTextSize = 15.0f;
 	
 	private SeekBar mMinSeekBar = null;
 	private SeekBar mMaxSeekBar = null;
@@ -42,16 +41,19 @@ public class DoubleSeekBar extends LinearLayout {
         TypedArray attributesArr = context.obtainStyledAttributes(attrs, R.styleable.DoubleSeekbar);
 
         mHasMaxSeekBar = attributesArr.getBoolean(R.styleable.DoubleSeekbar_hasMaxSeekBar, true);
-        mMinValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_min_value, -1);
-        mMinTitle = attributesArr.getString(R.styleable.DoubleSeekbar_min_title);
-    	mMaxValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_max_value, -1);
+        mMinValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_minValue, 0);
+        mMinTitle = attributesArr.getString(R.styleable.DoubleSeekbar_minTitle);
+    	mMaxValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_maxValue, 1);
+    	Float textSizePx = attributesArr.getDimension(R.styleable.DoubleSeekbar_textSize, 15);
+    	
+    	mTextSize = textSizePx / getResources().getDisplayMetrics().scaledDensity;
     	
     	if (mMaxValue - mMinValue < 1) {
-    		throw new Exception("Minimum value - maximum value >= 1!");
+    		throw new Exception("Maximum value - minimum value >= 1!");
     	}
     	
     	if (mHasMaxSeekBar) {
-            mMaxTitle = attributesArr.getString(R.styleable.DoubleSeekbar_max_title);
+            mMaxTitle = attributesArr.getString(R.styleable.DoubleSeekbar_maxTitle);
         }
         mUnits = attributesArr.getString(R.styleable.DoubleSeekbar_units);
         
@@ -67,12 +69,16 @@ public class DoubleSeekBar extends LinearLayout {
         mMinSeekBar = (SeekBar)v.findViewById(R.id.double_seekbar_sb_min);
         mMaxSeekBar = (SeekBar)v.findViewById(R.id.double_seekbar_sb_max);
         
+        mMinTitleTv.setTextSize(mTextSize);
+		mMinValueTv.setTextSize(mTextSize);
+		mMaxTitleTv.setTextSize(mTextSize);
+		mMaxValueTv.setTextSize(mTextSize);
+        
         updateViews();
 
-        mMinValueTv.setText(String.valueOf(mMinValue) + " " + mUnits);
         mMinTitleTv.setText(mMinTitle == null ? "" : mMinTitle + ": ");
         
-        mMinSeekBar.setMax(mMaxValue-mMinValue);
+        setMaxValue(mMaxValue);
       
         mMinChangeListeners.registerListener(new OnSeekBarChangeListener() {
 			@Override
@@ -93,10 +99,7 @@ public class DoubleSeekBar extends LinearLayout {
         mMinSeekBar.setOnSeekBarChangeListener(mMinChangeListeners);
         
         if (mHasMaxSeekBar) {
-            mMaxValueTv.setText(String.valueOf(mMaxValue) + " " + mUnits);
             mMaxTitleTv.setText(mMaxTitle == null ? "" : mMaxTitle + ": ");
-            mMaxSeekBar.setMax(mMaxValue-mMinValue);
-            mMaxSeekBar.setProgress(mMaxSeekBar.getMax());
             
             mMaxChangeListeners.registerListener(new OnSeekBarChangeListener() {
     			@Override
@@ -129,6 +132,33 @@ public class DoubleSeekBar extends LinearLayout {
         	mMaxValueTv.setVisibility(View.GONE);
         }
 	}
+	
+	/**
+	 * Sets the minimum value of both SeekBars
+	 * @param minValue
+	 */
+	public void setMinValue(Integer minValue) {
+		mMinValue = minValue;
+		invalidate();
+    	requestLayout();
+	}
+	
+	/**
+	 * Sets the maximum value of both SeekBars
+	 * @param maxValue
+	 */
+	public void setMaxValue(Integer maxValue) {
+		mMaxValue = maxValue;
+		mMinSeekBar.setMax(mMaxValue-mMinValue);
+        mMinValueTv.setText(String.valueOf(mMinValue) + " " + mUnits);
+		if (mHasMaxSeekBar) {
+			mMaxSeekBar.setMax(mMaxValue-mMinValue);
+            mMaxSeekBar.setProgress(mMaxSeekBar.getMax());
+            mMaxValueTv.setText(String.valueOf(mMaxValue) + " " + mUnits);
+		}
+		invalidate();
+    	requestLayout();
+	}
     
 	/**
 	 * Sets if this DoubleSeekBar has a MaximumSeekBar or not. If this is false then only <b>one</b> SeekBar is available.
@@ -138,6 +168,8 @@ public class DoubleSeekBar extends LinearLayout {
     public void setHasMax(boolean hasMax) {
     	mHasMaxSeekBar = hasMax;
     	updateViews();
+    	invalidate();
+    	requestLayout();
     }
 	
 	/**
@@ -162,6 +194,8 @@ public class DoubleSeekBar extends LinearLayout {
 	 */
 	public void setMinTitle(String title) {
 		mMinTitleTv.setText(title);
+		invalidate();
+    	requestLayout();
 	}
 	
 	/**
@@ -170,6 +204,8 @@ public class DoubleSeekBar extends LinearLayout {
 	 */
 	public void setMaxTitle(String title) {
 		mMaxTitleTv.setText(title);
+		invalidate();
+    	requestLayout();
 	}
 	
 	/**
@@ -179,6 +215,23 @@ public class DoubleSeekBar extends LinearLayout {
 	 */
 	public void setUnits(String units) {
 		mUnits = units;
+		invalidate();
+    	requestLayout();
+	}
+	
+	/**
+	 * Sets the text size of all views in this widget
+	 * @param textSize - Text size.
+	 * @param dimensions - Dimensions
+	 */
+	public void setTextSize(Float textSize, Integer dimensions) {
+		mTextSize = textSize;
+		mMinTitleTv.setTextSize(dimensions, mTextSize);
+		mMinValueTv.setTextSize(dimensions, mTextSize);
+		mMaxTitleTv.setTextSize(dimensions, mTextSize);
+		mMaxValueTv.setTextSize(dimensions, mTextSize);
+		invalidate();
+    	requestLayout();
 	}
 	
 	/**
@@ -199,5 +252,5 @@ public class DoubleSeekBar extends LinearLayout {
 		}
 		return -1;
 	}
-	
+
 }

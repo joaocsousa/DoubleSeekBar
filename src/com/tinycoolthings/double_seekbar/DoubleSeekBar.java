@@ -253,4 +253,26 @@ public class DoubleSeekBar extends LinearLayout {
 		return -1;
 	}
 
+	/**
+	 * Sets the current progress of the Minimum SeekBar to the supplied value.
+	 * @param value
+	 */
+	public void setCurrentMinValue(Integer value) {
+		mMinSeekBar.setProgress(value-mMinValue);
+		invalidate();
+    	requestLayout();
+	}
+	
+	/**
+	 * Sets the current progress of the Maximum SeekBar to the supplied value.
+	 * @param value
+	 */
+	public void setCurrentMaxValue(Integer value) {
+		if (mHasMaxSeekBar) {
+			mMaxSeekBar.setProgress(value-mMinValue);
+		}
+		invalidate();
+    	requestLayout();
+	}
+	
 }

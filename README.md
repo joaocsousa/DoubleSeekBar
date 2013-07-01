@@ -3,7 +3,7 @@ DoubleSeekBar
 
 ##Description
 
-This library provides an easy way to add two native SeekBars with minimum and maximum values to your Android application.
+This library provides an easy way to add two (or one, read more below) native SeekBars with minimum and maximum values to your Android application.
 
 <b>Ice Cream Sandwich</b>
 
@@ -24,15 +24,16 @@ If you do not want two SeekBars you can also have only one with a minimum and a 
 ####Double SeekBar
 
     <com.tinycoolthings.DoubleSeekbar
-        android:id="@+id/test_doubleseekbar"
+        xmlns:app="http://schemas.android.com/apk/res/com.tinycoolthings.hiperprecos"
+	android:id="@+id/test_doubleseekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hasMaxSeekBar="true"
-        app:min_value="10"
-        app:max_value="20"
-        app:min_title="Min value"
-        app:max_title="Max value"
-        app:units="%" />
+        app:dsb_hasMaxSeekBar="true"
+        app:dsb_min_value="10"
+        app:dsb_max_value="20"
+        app:dsb_min_title="Min value"
+        app:dsb_max_title="Max value"
+        app:dsb_units="%" />
 
 ####Single SeekBar
 
@@ -40,11 +41,11 @@ If you do not want two SeekBars you can also have only one with a minimum and a 
         android:id="@+id/test_doubleseekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hasMaxSeekBar="false"
-        app:min_value="10"
-        app:max_value="20"
-        app:min_title="Value"
-        app:units="%" />
+        app:dsb_hasMaxSeekBar="false"
+        app:dsb_min_value="10"
+        app:dsb_max_value="20"
+        app:dsb_min_title="Value"
+        app:dsb_units="%" />
 
 ### Methods
 

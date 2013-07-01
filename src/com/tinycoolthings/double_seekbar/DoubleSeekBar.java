@@ -40,11 +40,11 @@ public class DoubleSeekBar extends LinearLayout {
         
         TypedArray attributesArr = context.obtainStyledAttributes(attrs, R.styleable.DoubleSeekbar);
 
-        mHasMaxSeekBar = attributesArr.getBoolean(R.styleable.DoubleSeekbar_hasMaxSeekBar, true);
-        mMinValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_minValue, 0);
-        mMinTitle = attributesArr.getString(R.styleable.DoubleSeekbar_minTitle);
-    	mMaxValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_maxValue, 1);
-    	Float textSizePx = attributesArr.getDimension(R.styleable.DoubleSeekbar_textSize, 15);
+        mHasMaxSeekBar = attributesArr.getBoolean(R.styleable.DoubleSeekbar_dsb_hasMaxSeekBar, true);
+        mMinValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_dsb_minValue, 0);
+        mMinTitle = attributesArr.getString(R.styleable.DoubleSeekbar_dsb_minTitle);
+    	mMaxValue = attributesArr.getInteger(R.styleable.DoubleSeekbar_dsb_maxValue, 1);
+    	Float textSizePx = attributesArr.getDimension(R.styleable.DoubleSeekbar_dsb_textSize, 15);
     	
     	mTextSize = textSizePx / getResources().getDisplayMetrics().scaledDensity;
     	
@@ -53,11 +53,12 @@ public class DoubleSeekBar extends LinearLayout {
     	}
     	
     	if (mHasMaxSeekBar) {
-            mMaxTitle = attributesArr.getString(R.styleable.DoubleSeekbar_maxTitle);
+            mMaxTitle = attributesArr.getString(R.styleable.DoubleSeekbar_dsb_maxTitle);
         }
-        mUnits = attributesArr.getString(R.styleable.DoubleSeekbar_units);
-        
+        mUnits = attributesArr.getString(R.styleable.DoubleSeekbar_dsb_units);
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         View v = inflater.inflate(R.layout.double_seekbar, this, true);
 
         mMinTitleTv = (TextView) v.findViewById(R.id.double_seekbar_tv_min_title);

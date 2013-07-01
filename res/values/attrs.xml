@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<declare-styleable name="DoubleSeekbar">
-		<attr name="minValue" format="integer|reference" />
-		<attr name="maxValue" format="integer|reference" />
-		<attr name="minTitle" format="string|reference" />
-		<attr name="maxTitle" format="string|reference" />
-		<attr name="units" format="string|reference" />
-		<attr name="hasMaxSeekBar" format="boolean" />
-		<attr name="textSize" format="reference|dimension" />
+		<attr name="dsb_minValue" format="integer|reference" />
+		<attr name="dsb_maxValue" format="integer|reference" />
+		<attr name="dsb_minTitle" format="string|reference" />
+		<attr name="dsb_maxTitle" format="string|reference" />
+		<attr name="dsb_units" format="string|reference" />
+		<attr name="dsb_hasMaxSeekBar" format="boolean" />
+		<attr name="dsb_textSize" format="reference|dimension" />
 	</declare-styleable>
 </resources>

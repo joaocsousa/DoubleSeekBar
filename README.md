@@ -25,7 +25,7 @@ If you do not want two SeekBars you can also have only one with a minimum and a 
 
     <com.tinycoolthings.DoubleSeekbar
         xmlns:app="http://schemas.android.com/apk/res/com.tinycoolthings.hiperprecos"
-	android:id="@+id/test_doubleseekbar"
+        android:id="@+id/test_doubleseekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_hasMaxSeekBar="true"
